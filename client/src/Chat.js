@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 function Chat({ socket, userName, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -17,16 +18,14 @@ function Chat({ socket, userName, room }) {
       };
 
       await socket.emit("send_message", messageData);
+      setMessageList((list) => [...list, messageData]);
+      setCurrentMessage("");
     }
   };
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      console.log("data", data);
-      console.log(
-        "check list",
-        setMessageList((list) => [...list, data])
-      );
+      setMessageList((list) => [...list, data]);
     });
   }, [socket]);
 
@@ -36,18 +35,37 @@ function Chat({ socket, userName, room }) {
         <p>Live chat</p>
       </div>
       <div className="chat-body">
-        {messageList.map((messsageContents) => {
-          return (
-            <h2 key={messsageContents.message}>{messsageContents.message}</h2>
-          );
-        })}
+        <ScrollToBottom className="message-container">
+          {messageList.map((messsageContents) => {
+            return (
+              <div
+                className="message"
+                id={userName === messsageContents.userName ? "other" : "you"}
+              >
+                <div>
+                  <div className="message-content">
+                    <p>{messsageContents.message}</p>
+                  </div>
+                  <div className="message-meta">
+                    <p id="time">{messsageContents.time}</p>
+                    <p id="author">{messsageContents.userName}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </ScrollToBottom>
       </div>
       <div className="chat-footer">
         <input
           type="text"
+          value={currentMessage}
           placeholder="Hi..."
           onChange={(event) => {
             setCurrentMessage(event.target.value);
+          }}
+          onKeyDown={(event) => {
+            event.key === "Enter" && sendMessages();
           }}
         />
         <button onClick={sendMessages}>&#9658;</button>
