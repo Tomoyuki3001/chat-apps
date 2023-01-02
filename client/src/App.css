@@ -1,32 +1,50 @@
-.App {
-  width: 100vw;
-  height: 100vh;
-  background: #fff;
-  color: #212121;
-  font-family: "Open Sans", sans-serif;
-  display: grid;
-  place-items: center;
+#root {
+  width: 100%;
 }
 body {
   margin: 0%;
   padding: 0%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
+
+
+.App {
+  color: #212121;
+  font-family: "Open Sans", sans-serif;
+  width: 100%
+}
+
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
 
+
+.join-main-container, .chat-main-container {
+  display: flex;
+  justify-content: center;
+}
+
 .joinChatContainer {
+  padding: 10% 15%; 
+  margin-top: 5%;
+  background-color: aqua;
+}
+
+.joinChat-input-container {
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .joinChatContainer h3 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin: 0%;
+  padding: 0%;
 }
-.joinChatContainer input {
+
+.joinChat-input {
+  margin: 5% 0%;
   width: 210px;
   height: 40px;
-  margin: 7px;
   border: 2px solid #43a047;
   border-radius: 5px;
   padding: 5px;
@@ -34,9 +52,9 @@ body {
 }
 
 .joinChatContainer button {
+  margin: 2% 0%;
   width: 225px;
   height: 50px;
-  margin: 7px;
   border: none;
   border-radius: 5px;
   padding: 5px;
@@ -51,8 +69,9 @@ body {
 }
 
 .chat-window {
-  width: 300px;
-  height: 420px;
+  width: 40em;
+  height: 600px;
+  margin-top: 5%;
 }
 
 .chat-window p {
@@ -60,7 +79,6 @@ body {
 }
 .chat-window .chat-header {
   height: 45px;
-  border-radius: 6px;
   background: #263238;
   position: relative;
   cursor: pointer;
@@ -74,10 +92,9 @@ body {
 }
 
 .chat-window .chat-body {
-  height: calc(450px - (45px + 70px));
-  border: 1px solid #263238;
+  height: 60vh;
+  border: 2px solid #263238;
   background: #fff;
-
   position: relative;
 }
 .chat-window .chat-body .message-container {
@@ -99,8 +116,8 @@ body {
 .chat-window .chat-body .message .message-content {
   width: auto;
   height: auto;
-  min-height: 40px;
-  max-width: 120px;
+  max-width: 400px;
+  min-height: 30px;
   background-color: #43a047;
   border-radius: 5px;
   color: white;
@@ -108,8 +125,7 @@ body {
   align-items: center;
   margin-right: 5px;
   margin-left: 5px;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding: 5px 10px;
   overflow-wrap: break-word;
   word-break: break-word;
 }
@@ -133,7 +149,7 @@ body {
 
 #other .message-content {
   justify-content: flex-end;
-  background-color: cornflowerblue;
+  background-color: yellowgreen;
 }
 
 #other .message-meta {
@@ -188,4 +204,23 @@ body {
 }
 .hide {
   opacity: 0 !important;
+}
+
+.chat-backbutton-container {
+  width: 100%;
+  display:flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.back-button {
+  width: 250px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 20px;
+  background: #43a047;
+  color: #fff;
+  cursor: pointer;
 }
